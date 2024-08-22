@@ -116,3 +116,30 @@ Se você quiser saber mais sobre o que é, os casos de uso, quando usar, vantage
 O Provider é usado para envolver a parte da aplicação que fornece os dados, enquanto o Consumer é utilizado nos componentes que precisam acessar esses dados. Eles formam uma dupla poderosa para resolver o problema de comunicação.
 
 [Documentação do useContext()](https://react.dev/reference/react/useContext) 
+
+## Solid
+
+Primeiro que SOLID é um conceito de POO (Programação Orientada a Objetos) muito forte em linguagens orientadas a Objetos como Java e C#. Cada letra da sigla SOLID é a inicial de um dos princípio que regem a POO, para criarmos um código mais consistente, limpo e saudável a longo prazo. Se liga:
+
+S — Single Responsiblity Principle (Princípio da responsabilidade única)
+O — Open-Closed Principle (Princípio Aberto-Fechado)
+L — Liskov Substitution Principle (Princípio da substituição de Liskov)
+I — Interface Segregation Principle (Princípio da Segregação da Interface)
+D — Dependency Inversion Principle (Princípio da inversão da dependência)
+E agora você deve está se perguntando: “Legal, mas o que isso tem a ver com Front-end? “ ou então “Como eu uso esses conceitos nas minhas aplicações React? ”.
+
+Calma que o nosso dev de boina favorito, Vinicius Neves, fez uma série de artigos em um blog muito popular na comunidade explicando cada princípio e como eles podem ser adaptados e usados no Front-end, principalmente em aplicações React. Confere aí:
+
+Princípio da responsabilidade única
+Princípio Aberto-Fechado
+Princípio da substituição de Liskov
+Princípio da Segregação da Interface
+Princípio da inversão da dependência
+
+## Documentação de contextos aninhados
+
+[Documentação de Contextos Aninhados](https://pt-br.legacy.reactjs.org/docs/context.html#consuming-multiple-contexts)
+
+## Documentação de Hooks Customizados
+
+[Documentação de Hooks Customizados](https://react.dev/learn/reusing-logic-with-custom-hooks#)
