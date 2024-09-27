@@ -7,7 +7,7 @@ const ListaProdutosCarrinho = ({ carrinho }) => {
   const location = useLocation();
   return (
     <ul className="list-unstyled">
-      {carrinho.length === 0 ? (
+      {carrinho.length == 0 ? (
         <p className="text-center my-5">Não há produtos no carrinho</p>
       ) : (
         carrinho.map((itemCarrinho) => {
