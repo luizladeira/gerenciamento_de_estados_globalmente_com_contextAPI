@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CarrinhoContext } from '@/context/CarrinhoContext';
 
 export const useCarrinhoContext = () => {
 
-    const { carrinho, setCarrinho } = useContext(CarrinhoContext);
+    const { carrinho, setCarrinho, quantidade, setQuantidade, valorTotal, setValorTotal } = useContext(CarrinhoContext);
 
     function mudarQuantidade(id, quantidade) {
         return carrinho.map((itemDoCarrinho) => {
@@ -51,11 +51,39 @@ export const useCarrinhoContext = () => {
         setCarrinho(produto);
     }
 
+    //OPEN reduce - transforma as quantidade dos itens em um unico valor
+    /*
+    Essa função realiza a soma do valor total e quantidade de intens no carrinho usado para iterar sobre um arry
+    e reduzi-lo a um único valorTotal, com base em uma função de acumulação fornecida.
+    */
+    useEffect(
+        () => {
+            const { totalTemporario, quantidadeTemporario } = carrinho.reduce((acumulador, produto) => (
+                {
+                    quantidadeTemporario: acumulador.quantidadeTemporario + produto.quantidade,
+                    totalTemporario: acumulador.totalTemporario + produto.preco * produto.quantidade
+                }
+            ),
+                {
+                    quantidadeTemporario: 0,
+                    totalTemporario: 0,
+                }
+
+            );
+            setQuantidade(quantidadeTemporario);
+            setValorTotal(totalTemporario);
+        }, [carrinho]);
+
+
+    //CLOSE reduce 
+
     return {
         carrinho,
         setCarrinho,
         adicionarProduto,
         removerProduto,
-        removerProdutoCarrinho,
+        removerProdutoCarrinho,        
+        valorTotal,
+        quantidade,
     }
 }
