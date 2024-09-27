@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { CarrinhoContext } from '@/context/CarrinhoContext';
 
 export const useCarrinhoContext = () => {
@@ -58,22 +58,28 @@ export const useCarrinhoContext = () => {
     */
     useEffect(
         () => {
-            const { totalTemporario, quantidadeTemporario } = carrinho.reduce((acumulador, produto) => (
-                {
-                    quantidadeTemporario: acumulador.quantidadeTemporario + produto.quantidade,
-                    totalTemporario: acumulador.totalTemporario + produto.preco * produto.quantidade
-                }
-            ),
-                {
-                    quantidadeTemporario: 0,
-                    totalTemporario: 0,
-                }
-
-            );
             setQuantidade(quantidadeTemporario);
             setValorTotal(totalTemporario);
-        }, [carrinho]);
+        });
 
+
+    /* useMemo() ele fica armazenado em cache e só irá mudar se realmente precisar com isso 
+    ganhamos em performance sem a necessidade de ficar calculando toda hora que passar nesse trecho.
+    */
+    const { totalTemporario, quantidadeTemporario } = useMemo(() => {
+        return carrinho.reduce((acumulador, produto) => (
+            {
+                quantidadeTemporario: acumulador.quantidadeTemporario + produto.quantidade,
+                totalTemporario: acumulador.totalTemporario + produto.preco * produto.quantidade
+            }
+        ),
+            {
+                quantidadeTemporario: 0,
+                totalTemporario: 0,
+            }
+
+        );
+    }, [carrinho]);
 
     //CLOSE reduce 
 
@@ -82,7 +88,7 @@ export const useCarrinhoContext = () => {
         setCarrinho,
         adicionarProduto,
         removerProduto,
-        removerProdutoCarrinho,        
+        removerProdutoCarrinho,
         valorTotal,
         quantidade,
     }
